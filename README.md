@@ -1,46 +1,125 @@
-# Getting Started with Create React App
+# TODO List Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+This project is a To-Do List Application built with React, Material-UI and Typescript. It allows users to manage their tasks, including creating, editing, and deleting tasks. All tasks are stored in the browser's LocalStorage for persistence.
 
-## Available Scripts
+#### Register
+![Register](https://github.com/user-attachments/assets/55338f94-40ea-4b78-a3a3-99734c1f336b)
 
-In the project directory, you can run:
+#### Login 
+![Login](https://github.com/user-attachments/assets/b25163da-6e04-4929-9bb3-5447dd9cb13c)
 
-### `npm start`
+#### Create to-do item
+![Adicionar](https://github.com/user-attachments/assets/b071e370-c3d3-4ba8-8916-6c985e3d3a68)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Edit to-do item
+![Edição](https://github.com/user-attachments/assets/a2a04c5b-1911-4eea-a5db-64f605d2a5c0)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+#### Delete to-do item
+![Deletar](https://github.com/user-attachments/assets/c16a51ad-0080-4ae5-ac35-eca1e77f3efb)
 
-### `npm test`
+#### Search Field
+![campo-de-pesquisa](https://github.com/user-attachments/assets/04890a1b-ce58-4807-8782-77aaf528333f)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Features
+The application includes the following features:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Login**
+   - A screen with fields for email and password.
+   - Only the interface is implemented; authentication logic is not implemented yet.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **User Registration**
+   - A screen with fields for name, email, and password.
+   - Only the interface is implemented; registration logic is not implemented yet.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Task List**
+   - A screen that lists all created tasks.
+   - Each task displays the title, color, and description.
 
-### `npm run eject`
+4. **Task Management**
+   - A form to create new tasks.
+   - A form to edit existing tasks.
+   - Functionality to delete tasks.
+   - Each task includes the following fields: title, color (using a color picker), and description.
+   - Tasks are saved to and loaded from LocalStorage.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Technical Details
+- **Framework**: React
+- **UI Components**: Material-UI
+- **Data Storage**: Browser's LocalStorage
+- **Language**: TypeScript
+- **Testing**: Jest
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-username/todo-list-app.git
+   cd todo-list-app
+   ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
 
-## Learn More
+3. Start the development server:
+   ```sh
+   npm start
+   ```
+   
+For a project with React, Material-UI, React Router, TypeScript, and Jest, you will need the following dependencies:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Main Dependencies
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. **React** and **React DOM**:
+   ```sh
+   npm install react react-dom
+   ```
+
+2. **Material-UI** (including icons):
+   ```sh
+   npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
+   ```
+
+3. **React Router**:
+   ```sh
+   npm install react-router-dom
+   ```
+
+4. **TypeScript** (if it's not already installed):
+   ```sh
+   npm install typescript
+   ```
+
+5. **Type Definitions for TypeScript**:
+   ```sh
+   npm install --save-dev @types/react @types/react-dom @types/react-router-dom
+   ```
+
+6. **Jest** and **React Testing Library** for tests:
+   ```sh
+   npm install --save-dev jest @testing-library/react @testing-library/jest-dom @testing-library/user-event @types/jest
+   ```
+
+### Commands to Install All Dependencies
+
+You can install all the dependencies at once with the following commands:
+
+```sh
+npm install react react-dom @mui/material @emotion/react @emotion/styled @mui/icons-material react-router-dom typescript
+npm install --save-dev jest @testing-library/react @testing-library/jest-dom @testing-library/user-event @types/jest @types/react @types/react-dom @types/react-router-dom
+```
+
+## Usage
+1. Open your browser and navigate to `http://localhost:3000`.
+2. Use the login and registration interfaces to create a new user (only the interface is functional).
+3. Create, edit, and delete tasks using the provided forms and task list interface.
+
+## Development Status
+The testing phase is currently under development.
+
+## Contributing
+Contributions are welcome! Please fork the repository and create a pull request with your changes.
+

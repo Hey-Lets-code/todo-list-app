@@ -1,10 +1,14 @@
 import {
+  AppBar,
+  Box,
   Button,
   FormControl,
   InputLabel,
   MenuItem,
   Select,
   TextField,
+  Toolbar,
+  Typography,
 } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -30,6 +34,16 @@ const ActivityForm: React.FC = () => {
 
   return (
     <div>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6">To-Do App</Typography>
+        </Toolbar>
+      </AppBar>
+      <Box my={4}>
+        <Typography variant="h4" gutterBottom align="center">
+          Create a new to-do
+        </Typography>
+      </Box>
       <FormControl fullWidth>
         <InputLabel>Color</InputLabel>
         <Select
@@ -68,8 +82,9 @@ const ActivityForm: React.FC = () => {
         onClick={addActivity}
         sx={{ mt: 2 }}
       >
-        Adicionar
+        Create
       </Button>
+      <Button onClick={() => navigate("/todos")}>Previous</Button>
     </div>
   );
 };

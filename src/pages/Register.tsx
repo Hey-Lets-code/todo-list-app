@@ -1,38 +1,47 @@
-import React, { useState } from 'react';
-import { Box, Container, TextField, Button, Typography, Link } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import {
+  Box,
+  Container,
+  TextField,
+  Button,
+  Typography,
+  Link,
+} from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Register: React.FC = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Lógica de registro 
+    // Lógica de registro
     // Após o registro, redireciona para a página de To Do List
-    navigate('/todos');
+    navigate("/todos");
   };
 
   return (
     <Container component="main" maxWidth="xs" sx={{ marginTop: 8 }}>
-      <Box 
-        sx={{ 
-          display: 'flex', 
-          flexDirection: 'column', 
-          alignItems: 'center', 
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
           padding: 4,
           borderRadius: 4,
           boxShadow: 2,
-          backgroundColor: 'background.default',
-          border: '1px solid #ccc'
+          backgroundColor: "background.default",
+          border: "1px solid #ccc",
         }}
       >
-        <Typography variant="h2" component="h1">Registro</Typography>
+        <Typography variant="h2" component="h1">
+          Registro
+        </Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
           <TextField
-            label="Nome"
+            label="Name"
             type="text"
             fullWidth
             margin="normal"
@@ -41,7 +50,7 @@ const Register: React.FC = () => {
             onChange={(e) => setName(e.target.value)}
           />
           <TextField
-            label="Email"
+            label="E-mail"
             type="email"
             fullWidth
             margin="normal"
@@ -50,7 +59,7 @@ const Register: React.FC = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
-            label="Senha"
+            label="Password"
             type="password"
             fullWidth
             margin="normal"
@@ -65,10 +74,12 @@ const Register: React.FC = () => {
             fullWidth
             sx={{ mt: 2 }}
           >
-            Registrar
+            Register
           </Button>
-          <Box sx={{ textAlign: 'center', mt: 2 }}>
-            <Link href="/login" variant="body2">Já tem uma conta? Faça login</Link>
+          <Box sx={{ textAlign: "center", mt: 2 }}>
+            <Link href="/login" variant="body2">
+              Already have an account? Log in
+            </Link>
           </Box>
         </Box>
       </Box>

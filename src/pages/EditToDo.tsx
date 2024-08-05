@@ -8,6 +8,10 @@ import {
   Typography,
   AppBar,
   Toolbar,
+  MenuItem,
+  InputLabel,
+  Select,
+  FormControl,
 } from "@mui/material";
 
 interface Activity {
@@ -17,11 +21,11 @@ interface Activity {
 }
 
 const EditActivity: React.FC = () => {
-  const { index } = useParams<{ index: string }>();
-  const navigate = useNavigate();
+  const { index } = useParams<{ index: string }>(); // não tenho certeza se o index será capturado aqui ou se existe
+  const navigate = useNavigate(); // permite a navegação pela aplicação criando uma função para navegação através do useNavigate
   const [activity, setActivity] = useState<Activity | null>(null);
 
-  // Carregar a atividade com base no índice
+  // Carregar a atividade com base no índice, além disso o useEffect serve para carregar dados quando o componente monta
   useEffect(() => {
     if (index !== undefined) {
       const storedActivities = JSON.parse(
@@ -32,6 +36,7 @@ const EditActivity: React.FC = () => {
     }
   }, [index]);
 
+  // Função utilizada para quando o valor de um campo de texto muda. Atualiza a propriedade correspondente da atividade ('activity)
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     if (activity) {
@@ -39,6 +44,7 @@ const EditActivity: React.FC = () => {
     }
   };
 
+  // Função chamada quando o botão "Save" é clicado. Atualiza a atividade no local storage e navega de volta para a lista de atividades
   const handleSave = () => {
     if (activity && index !== undefined) {
       const storedActivities = JSON.parse(
@@ -50,21 +56,26 @@ const EditActivity: React.FC = () => {
     }
   };
 
+  // Mostra o texto "Loading..." enquanto a atividade é carregada
   if (!activity) {
     return <div>Loading...</div>;
   }
 
+  // AppBar, Toolbar e Typography: basicamente cria a barra de navegação com o título "Edit Activity"
+  // Container, Box: define a estrutura e layout do formulário de edição
+  // TextField: campos de texto para editar 'title', 'description' e 'color'
+  // Button: é onde eu salvo as mudanças
   return (
     <div>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6">Edit Activity</Typography>
+          <Typography variant="h6">To-Do App</Typography>
         </Toolbar>
       </AppBar>
       <Container>
         <Box my={4}>
           <Typography variant="h4" gutterBottom align="center">
-            Edit Activity
+            Edit your to-do
           </Typography>
           <Box
             component="form"
@@ -90,16 +101,24 @@ const EditActivity: React.FC = () => {
               onChange={handleChange}
               variant="outlined"
             />
-            <TextField
-              label="Color"
-              name="color"
-              value={activity.color}
-              onChange={handleChange}
-              variant="outlined"
-            />
+            <FormControl fullWidth>
+              <InputLabel>Color</InputLabel>
+              <Select
+                value={activity.color}
+                label="Color"
+                onChange={(e) =>
+                  setActivity({ ...activity, color: e.target.value })
+                }
+              >
+                <MenuItem value={"red"}>Red</MenuItem>
+                <MenuItem value={"orange"}>Orange</MenuItem>
+                <MenuItem value={"green"}>Green</MenuItem>
+              </Select>
+            </FormControl>
             <Button variant="contained" color="primary" onClick={handleSave}>
               Save
             </Button>
+            <Button onClick={() => navigate("/todos")}>Previous</Button>
           </Box>
         </Box>
       </Container>

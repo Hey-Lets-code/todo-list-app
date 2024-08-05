@@ -26,7 +26,7 @@ import { useNavigate } from "react-router-dom";
  * @returns {JSX.Element} Componente que renderiza o formulário de login.
  */
 const Login: React.FC = () => {
-  // Hook para navegação programática
+  // Hook para navegação
   const navigate = useNavigate();
 
   // Estados para armazenar o e-mail e a senha do usuário

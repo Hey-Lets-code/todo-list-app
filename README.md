@@ -5,6 +5,7 @@ This project is a To-Do List Application built with React, Material-UI and Types
 
 ### Deployed Application
 You can view the live version of the application [here](https://todo-list-qbkmdggo0-leticias-projects-75b084f9.vercel.app). 
+
 The term "Deployed" refers to the fact that this application has been published and is accessible on the web, allowing you to interact with it as if it were a finished product.
 
 #### Register

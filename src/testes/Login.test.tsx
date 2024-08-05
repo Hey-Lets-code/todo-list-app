@@ -25,7 +25,4 @@ test("renders login form and handles submit", () => {
 
   // Simula o clique no botão de submit
   fireEvent.click(screen.getByText(/Login/i));
-
-  // Verifica se a navegação para "/todos" ocorreu
-  // (depende de como você está testando a navegação, pode ser necessário ajustar)
 });

@@ -17,6 +17,9 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Interface que define o formato de uma atividade.
+ */
 interface Activity {
   id: string;
   title: string;
@@ -25,11 +28,20 @@ interface Activity {
 }
 
 const ToDoList: React.FC = () => {
+  // Hook para navegação
   const navigate = useNavigate();
+
+  // Estado para armazenar todas as atividades
   const [activities, setActivities] = useState<Activity[]>([]);
+  // Estado para armazenar o texto de pesquisa
   const [searchText, setSearchText] = useState<string>("");
+  // Estado para armazenar as atividades filtradas com base na pesquisa
   const [filteredActivities, setFilteredActivities] = useState<Activity[]>([]);
 
+  /**
+   * Efeito que carrega as atividades armazenadas no local storage quando o componente é montado.
+   * Também chama a função de pesquisa para atualizar a lista de atividades filtradas.
+   */
   useEffect(() => {
     const storedActivities = JSON.parse(
       localStorage.getItem("activities") ?? "[]"
@@ -38,10 +50,19 @@ const ToDoList: React.FC = () => {
     handleSearch();
   }, []);
 
+  /**
+   * Efeito que atualiza a lista de atividades filtradas sempre que o texto de pesquisa ou as atividades mudam.
+   */
   useEffect(() => {
     handleSearch();
   }, [searchText, activities]);
 
+  /**
+   * Função para excluir uma atividade com base no índice fornecido.
+   * Atualiza o estado e o local storage após a exclusão.
+   *
+   * @param {number} index - Índice da atividade a ser excluída.
+   */
   const handleDelete = (index: number) => {
     if (index !== undefined) {
       console.log("Deletando atividade com índice:", index);
@@ -54,7 +75,10 @@ const ToDoList: React.FC = () => {
     }
   };
 
-  // Filtro de atividades com base na cor de pesquisa
+  /**
+   * Função para filtrar atividades com base no texto de pesquisa.
+   * Atualiza a lista de atividades filtradas com os resultados da pesquisa.
+   */
   const handleSearch = () => {
     let results = activities;
     if (searchText !== "") {
@@ -67,6 +91,12 @@ const ToDoList: React.FC = () => {
     setFilteredActivities(results);
   };
 
+  /**
+   * Função chamada quando o texto de pesquisa muda.
+   * Atualiza o estado do texto de pesquisa.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} event - Evento de alteração do campo de texto.
+   */
   const handleSearchTextChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -87,7 +117,7 @@ const ToDoList: React.FC = () => {
           </Typography>
           <Box mb={4}>
             <TextField
-              label="Search"
+              label="Buscar"
               variant="outlined"
               fullWidth
               value={searchText}

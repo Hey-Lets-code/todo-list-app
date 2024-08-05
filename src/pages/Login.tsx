@@ -9,15 +9,43 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Componente de login para a aplicação To-Do.
+ * Permite que o usuário insira um e-mail e uma senha para fazer login.
+ * Após o envio do formulário, o usuário é redirecionado para a página de atividades.
+ *
+ * Utiliza os seguintes componentes do Material-UI:
+ * - Container: Para definir a largura máxima e o alinhamento do formulário.
+ * - Box: Para estruturar e estilizar o layout do formulário.
+ * - Typography: Para exibir o título da página de login.
+ * - TextField: Para os campos de entrada de e-mail e senha.
+ * - Button: Para o botão de envio do formulário.
+ * - Link: Para fornecer um link para a página de registro.
+ *
+ * @component
+ * @returns {JSX.Element} Componente que renderiza o formulário de login.
+ */
 const Login: React.FC = () => {
+  // Hook para navegação programática
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
+  // Estados para armazenar o e-mail e a senha do usuário
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  /**
+   * Função chamada quando o formulário é enviado.
+   * - Previne o comportamento padrão do formulário.
+   * - Lógica do login (a ser implementada).
+   * - Após o login ser aprovado, redireciona para a página de atividades.
+   *
+   * @param {React.FormEvent} event - Evento de submissão do formulário.
+   * @function
+   */
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     // Lógica do login
-    // Após o login ser aprovado, o objetivo aqui eh redirecionar para a página de To-Do
+    // Após o login ser aprovado, redireciona para a página de atividades
     navigate("/todos");
   };
 
@@ -39,6 +67,7 @@ const Login: React.FC = () => {
           Login
         </Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
+          {/* Campo de entrada para o e-mail do usuário */}
           <TextField
             label="E-mail"
             type="email"
@@ -48,6 +77,7 @@ const Login: React.FC = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          {/* Campo de entrada para a senha do usuário */}
           <TextField
             label="Password"
             type="password"
@@ -57,6 +87,7 @@ const Login: React.FC = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {/* Botão para enviar o formulário de login */}
           <Button
             type="submit"
             variant="contained"
@@ -66,6 +97,7 @@ const Login: React.FC = () => {
           >
             Login
           </Button>
+          {/* Link para a página de registro, caso o usuário não tenha uma conta */}
           <Box sx={{ textAlign: "center", mt: 2 }}>
             <Link href="/register" variant="body2">
               Don't have an account? Sign up

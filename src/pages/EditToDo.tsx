@@ -14,18 +14,50 @@ import {
   FormControl,
 } from "@mui/material";
 
+// Interface que define a estrutura dos dados de uma atividade
 interface Activity {
   title: string;
   description: string;
   color: string;
 }
 
+/**
+ * Componente para editar uma atividade existente na aplicação To-Do.
+ * Permite ao usuário modificar o título, descrição e cor da atividade selecionada.
+ * Os dados são carregados do localStorage com base no índice fornecido na URL.
+ * Após a edição, as alterações são salvas no localStorage e o usuário é redirecionado para a lista de atividades.
+ *
+ * Utiliza os seguintes componentes do Material-UI:
+ * - AppBar: Para a barra de navegação superior.
+ * - Toolbar: Para o contêiner da barra de navegação.
+ * - Typography: Para exibir textos.
+ * - Container e Box: Para a estrutura e layout do formulário.
+ * - TextField: Para os campos de entrada de título e descrição.
+ * - FormControl: Para o controle de seleção da cor.
+ * - InputLabel: Para o rótulo do campo de seleção.
+ * - Select e MenuItem: Para a seleção da cor da atividade.
+ * - Button: Para os botões de salvar e navegar para a página anterior.
+ *
+ * @component
+ * @returns {JSX.Element} Componente que renderiza um formulário para editar uma atividade.
+ */
 const EditActivity: React.FC = () => {
-  const { index } = useParams<{ index: string }>(); // não tenho certeza se o index será capturado aqui ou se existe
-  const navigate = useNavigate(); // permite a navegação pela aplicação criando uma função para navegação através do useNavigate
+  // Obtém o índice da atividade a ser editada da URL
+  const { index } = useParams<{ index: string }>();
+
+  // Hook para navegação programática
+  const navigate = useNavigate();
+
+  // Estado para armazenar a atividade a ser editada
   const [activity, setActivity] = useState<Activity | null>(null);
 
-  // Carregar a atividade com base no índice, além disso o useEffect serve para carregar dados quando o componente monta
+  /**
+   * Carrega a atividade com base no índice fornecido na URL.
+   * - Obtém a lista de atividades do localStorage.
+   * - Encontra a atividade com base no índice e atualiza o estado.
+   *
+   * @function
+   */
   useEffect(() => {
     if (index !== undefined) {
       const storedActivities = JSON.parse(
@@ -36,7 +68,13 @@ const EditActivity: React.FC = () => {
     }
   }, [index]);
 
-  // Função utilizada para quando o valor de um campo de texto muda. Atualiza a propriedade correspondente da atividade ('activity)
+  /**
+   * Função chamada quando o valor de um campo de texto muda.
+   * Atualiza o estado da atividade com base no nome e valor do campo alterado.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} event - Evento de mudança no campo de texto.
+   * @function
+   */
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     if (activity) {
@@ -44,7 +82,12 @@ const EditActivity: React.FC = () => {
     }
   };
 
-  // Função chamada quando o botão "Save" é clicado. Atualiza a atividade no local storage e navega de volta para a lista de atividades
+  /**
+   * Função chamada quando o botão "Save" é clicado.
+   * Atualiza a atividade no localStorage e navega de volta para a lista de atividades.
+   *
+   * @function
+   */
   const handleSave = () => {
     if (activity && index !== undefined) {
       const storedActivities = JSON.parse(
@@ -61,12 +104,9 @@ const EditActivity: React.FC = () => {
     return <div>Loading...</div>;
   }
 
-  // AppBar, Toolbar e Typography: basicamente cria a barra de navegação com o título "Edit Activity"
-  // Container, Box: define a estrutura e layout do formulário de edição
-  // TextField: campos de texto para editar 'title', 'description' e 'color'
-  // Button: é onde eu salvo as mudanças
   return (
     <div>
+      {/* Barra de navegação superior */}
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6">To-Do App</Typography>
@@ -87,6 +127,7 @@ const EditActivity: React.FC = () => {
               gap: "16px",
             }}
           >
+            {/* Campo de entrada para o título da atividade */}
             <TextField
               label="Title"
               name="title"
@@ -94,6 +135,7 @@ const EditActivity: React.FC = () => {
               onChange={handleChange}
               variant="outlined"
             />
+            {/* Campo de entrada para a descrição da atividade */}
             <TextField
               label="Description"
               name="description"
@@ -101,6 +143,7 @@ const EditActivity: React.FC = () => {
               onChange={handleChange}
               variant="outlined"
             />
+            {/* Controle de seleção para escolher a cor da atividade */}
             <FormControl fullWidth>
               <InputLabel>Color</InputLabel>
               <Select
@@ -115,9 +158,11 @@ const EditActivity: React.FC = () => {
                 <MenuItem value={"green"}>Green</MenuItem>
               </Select>
             </FormControl>
+            {/* Botão para salvar as alterações */}
             <Button variant="contained" color="primary" onClick={handleSave}>
               Save
             </Button>
+            {/* Botão para retornar à página anterior */}
             <Button onClick={() => navigate("/todos")}>Previous</Button>
           </Box>
         </Box>

@@ -9,16 +9,44 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Componente de registro para a aplicação To-Do.
+ * Permite que o usuário insira um nome, e-mail e senha para criar uma nova conta.
+ * Após o envio do formulário, o usuário é redirecionado para a página de atividades.
+ *
+ * Utiliza os seguintes componentes do Material-UI:
+ * - Container: Para definir a largura máxima e o alinhamento do formulário.
+ * - Box: Para estruturar e estilizar o layout do formulário.
+ * - Typography: Para exibir o título da página de registro.
+ * - TextField: Para os campos de entrada de nome, e-mail e senha.
+ * - Button: Para o botão de envio do formulário.
+ * - Link: Para fornecer um link para a página de login.
+ *
+ * @component
+ * @returns {JSX.Element} Componente que renderiza o formulário de registro.
+ */
 const Register: React.FC = () => {
+  // Hook para navegação programática
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
+  // Estados para armazenar o nome, e-mail e senha do usuário
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  /**
+   * Função chamada quando o formulário é enviado.
+   * - Previne o comportamento padrão do formulário.
+   * - Lógica de registro (a ser implementada).
+   * - Após o registro ser concluído, redireciona para a página de atividades.
+   *
+   * @param {React.FormEvent} event - Evento de submissão do formulário.
+   * @function
+   */
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     // Lógica de registro
-    // Após o registro, redireciona para a página de To Do List
+    // Após o registro ser aprovado, redireciona para a página de atividades
     navigate("/todos");
   };
 
@@ -40,6 +68,7 @@ const Register: React.FC = () => {
           Register
         </Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
+          {/* Campo de entrada para o nome do usuário */}
           <TextField
             label="Name"
             type="text"
@@ -49,6 +78,7 @@ const Register: React.FC = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+          {/* Campo de entrada para o e-mail do usuário */}
           <TextField
             label="E-mail"
             type="email"
@@ -58,6 +88,7 @@ const Register: React.FC = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          {/* Campo de entrada para a senha do usuário */}
           <TextField
             label="Password"
             type="password"
@@ -67,6 +98,7 @@ const Register: React.FC = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {/* Botão para enviar o formulário de registro */}
           <Button
             type="submit"
             variant="contained"
@@ -76,6 +108,7 @@ const Register: React.FC = () => {
           >
             Register
           </Button>
+          {/* Link para a página de login, caso o usuário já tenha uma conta */}
           <Box sx={{ textAlign: "center", mt: 2 }}>
             <Link href="/login" variant="body2">
               Already have an account? Log in

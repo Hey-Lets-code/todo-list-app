@@ -37,7 +37,7 @@ const Register: React.FC = () => {
         }}
       >
         <Typography variant="h2" component="h1">
-          Registro
+          Register
         </Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
           <TextField

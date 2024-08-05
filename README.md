@@ -1,4 +1,4 @@
-# TODO List Application
+# TO-DO List Application
 
 ## Overview
 This project is a To-Do List Application built with React, Material-UI and Typescript. It allows users to manage their tasks, including creating, editing, and deleting tasks. All tasks are stored in the browser's LocalStorage for persistence.

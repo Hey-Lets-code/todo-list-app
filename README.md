@@ -3,6 +3,8 @@
 ## Overview
 This project is a To-Do List Application built with React, Material-UI and Typescript. It allows users to manage their tasks, including creating, editing, and deleting tasks. All tasks are stored in the browser's LocalStorage for persistence.
 
+**Deployed**[https://todo-list-qbkmdggo0-leticias-projects-75b084f9.vercel.app](https://todo-list-qbkmdggo0-leticias-projects-75b084f9.vercel.app)
+
 #### Register
 ![Register](https://github.com/user-attachments/assets/55338f94-40ea-4b78-a3a3-99734c1f336b)
 
